@@ -10,22 +10,23 @@ v-stepper(v-model='e1')
     v-stepper-content(step='1')
       v-card.mb-12(color='grey lighten-1' height='200px')
         h2 Upload Art
-        v-file-input(label="Art File" type="file") Continue
-        v-btn(text='') Cancel
+        v-file-input(label="Art File" type="file")
+      v-btn(color='primary' @click='e1 = 2') Continue
+      v-btn(text='') Cancel
     v-stepper-content(step='2')
       v-card.mb-12(color='grey lighten-1' height='200px')
         h2 Upload Metadata
         v-text-field(label="Title") 
         v-text-field(label="Description")
-        v-select(:items="collections" label="Solo field" solo)
-        v-btn(color='primary' @click='e1 = 3') Continue
-        v-btn(text='') Cancel
+        v-select(:items="collections" label="Collection")
+      v-btn(color='primary' @click='e1 = 3') Continue
+      v-btn(text='') Cancel
     v-stepper-content(step='3')
       v-card.mb-12(color='grey lighten-1' height='200px')
         h2 Mint a Token
         h4 Gas Fees: 0.-----
-        v-btn(color='primary' @click='e1 = 1') Continue
-        v-btn(text='') Cancel
+      v-btn(color='primary' @click='e1 = 1') Continue
+      v-btn(text='') Cancel
 </template>
 
 <script>
