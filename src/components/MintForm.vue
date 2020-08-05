@@ -1,16 +1,40 @@
 <template lang="pug">
-v-card.pa-8
-  v-form
-    h2 Mint a Token
-    v-text-field(label="Title") 
-    v-textarea(label="Description") 
-    v-file-input(label="Art File" type="file")
-    v-btn Upload
+v-stepper(v-model='e1')
+  v-stepper-header
+    v-stepper-step(:complete='e1 > 1' step='1') Upload Art
+    v-divider
+    v-stepper-step(:complete='e1 > 2' step='2') Upload Metadata
+    v-divider
+    v-stepper-step(step='3') Mint Token
+  v-stepper-items
+    v-stepper-content(step='1')
+      v-card.mb-12(color='grey lighten-1' height='200px')
+        h2 Upload Art
+        v-file-input(label="Art File" type="file") Continue
+        v-btn(text='') Cancel
+    v-stepper-content(step='2')
+      v-card.mb-12(color='grey lighten-1' height='200px')
+        h2 Upload Metadata
+        v-text-field(label="Title") 
+        v-text-field(label="Description")
+        v-select(:items="collections" label="Solo field" solo)
+        v-btn(color='primary' @click='e1 = 3') Continue
+        v-btn(text='') Cancel
+    v-stepper-content(step='3')
+      v-card.mb-12(color='grey lighten-1' height='200px')
+        h2 Mint a Token
+        h4 Gas Fees: 0.-----
+        v-btn(color='primary' @click='e1 = 1') Continue
+        v-btn(text='') Cancel
 </template>
 
 <script>
 export default {
   name: "MintForm",
+  data: () => ({
+    e1: 1,
+    collections: ["Kallidascopic", "Droplets"],
+  }),
 };
 </script>
 
