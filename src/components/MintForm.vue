@@ -87,7 +87,7 @@ export default {
   computed: {
     collectionId() {
       let id = -1;
-      for (let i = 0; i < this.collections.length; i++)
+      for (let i = 1; i <= this.collections.length; i++)
         if (this.collections[i][0] === this.collection) id = i;
       return id;
     },
@@ -103,7 +103,7 @@ export default {
         ._collectionCount()
         .call();
       console.log(count);
-      for (let i = 0; i < count; i++)
+      for (let i = 1; i <= count; i++)
         this.collections.push(
           await this.$store.state.contract.methods.getCollection(i).call()
         );
