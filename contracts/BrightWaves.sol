@@ -64,7 +64,7 @@ contract BrightWaves is ERC721, Ownable {
     ) external onlyOwner() returns (uint256) {
         // check the collection exists
         require(
-            (collection > 0 && collection < _collectionCount.current()),
+            (collection > 0 && collection <= _collectionCount.current()),
             "Nonexistant Collection ID"
         );
         uint256 id = _tokenIds.current();
