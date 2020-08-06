@@ -55,7 +55,7 @@ v-stepper(v-model='step')
           h2 TX Hash: {{ txHash }}
           h4 Collection: {{ collection }}
         v-card-actions
-          v-btn(color="secondary" target="_blank" :href="'https://ropsten.etherscan.io/tx/' + txHash") TX on Etherscan
+          v-btn(color="secondary" target="_blank" :href="'https://rinkeby.etherscan.io/tx/' + txHash") TX on Etherscan
           v-spacer
           v-btn(color='primary' @click='step = 1') Mint Another
 </template>
