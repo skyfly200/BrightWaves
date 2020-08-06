@@ -74,7 +74,7 @@ export default {
     title: "",
     description: "",
     collection: null,
-    bkgColor: "FFFFFF",
+    bkgColor: "121212",
     externalURL: "https://www.instagram.com/bright.waves/",
     collections: [],
     artResp: null,
@@ -139,8 +139,8 @@ export default {
       this.metadata = {
         name: this.title,
         description: this.description,
-        external_url: this.externalURL,
         image: "ipfs://" + this.artHash,
+        animation_url: "ipfs://" + this.artHash,
         background_color: this.bkgColor,
         attributes: [
           {
