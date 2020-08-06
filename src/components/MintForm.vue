@@ -29,7 +29,6 @@ v-stepper(v-model='step')
           v-text-field(label="Title" v-model="title")
           v-text-field(label="Description" v-model="description")
           v-text-field(label="Background Color" v-model="bkgColor")
-          v-text-field(label="External URL" v-model="externalURL")
         v-card-actions
           v-btn(@click="step = 1") Back
           v-spacer
@@ -140,7 +139,6 @@ export default {
         name: this.title,
         description: this.description,
         image: "ipfs://" + this.artHash,
-        animation_url: "ipfs://" + this.artHash,
         background_color: this.bkgColor,
         attributes: [
           {
