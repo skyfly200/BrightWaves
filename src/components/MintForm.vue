@@ -40,40 +40,41 @@ v-stepper(v-model='step')
 </template>
 
 <script>
+const pinataSDK = require("@pinata/sdk");
+const { pinataKey, pinataSecret } = require("../../secrets.json");
+
 export default {
-  // init web3 provider
-  // var web3 = new Web3(WEB3_PROVIDER_ENDPOINT)
-  // const tinyboxesContract = new web3.eth.Contract(
-  //   tinyboxesABI,
-  //   CONTRACT_ADDRESS,
-  // )
   name: "MintForm",
   data: () => ({
     step: 1,
     collections: ["Kallidascopic", "Droplets"],
+    pinata: null,
   }),
   mounted: async function() {
-    await this.$store.dispatch("initialize");
+    //await this.$store.dispatch("initialize");
+    this.getCollections();
+    // load Pinata SDK
+    this.pinata = pinataSDK(pinataKey, pinataSecret);
+    this.pinata
+      .testAuthentication()
+      .then((result) => {
+        //handle successful authentication here
+        console.log(result);
+      })
+      .catch((err) => {
+        //handle error here
+        console.log(err);
+      });
   },
   methods: {
-    uploadArt() {
-      // load Pinata SDK
-      // const pinata = pinataSDK(PINATA_API_KEY, PINATA_API_SECRET)
-      // // upload image and video to IPFS
-      // console.log('Uploading art to IPFS...')
-      // // direct appreach
-      // const url = `https://api.pinata.cloud/pinning/pinFileToIPFS`
-      // // build form data with any valid readStream source
-      // let formData = new FormData()
-      // formData.append('file', artStream)
-      // const ipfsResp = await axios.post(url, formData, {
-      //   maxContentLength: 'Infinity', //this is needed to prevent axios from erroring out with large files
-      //   headers: {
-      //     'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
-      //     pinata_api_key: PINATA_API_KEY,
-      //     pinata_secret_api_key: PINATA_API_SECRET,
-      //   },
-      // })
+    getCollections() {
+      this.collections.push("Test");
+    },
+    uploadArt: async function() {
+      // upload art to IPFS
+      console.log("Uploading art to IPFS...");
+      let formData = "";
+      this.artHash = (await this.pinata.pinFileToIPFS(formData)).IpfsHash;
       this.step = 2;
     },
     uploadMetadata() {
