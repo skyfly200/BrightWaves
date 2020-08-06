@@ -14,18 +14,15 @@ contract BrightWaves is ERC721, Ownable {
     Counters.Counter private _tokenIds;
     Counters.Counter public _collectionCount;
 
-    event NewCollection(uint256 id, string title, string description);
+    event NewCollection(uint256 id, string title);
 
     struct Collection {
         string title;
-        string description;
         uint256 count;
     }
 
     struct Artwork {
         string hash;
-        string title;
-        string description;
         uint256 collection;
     }
 
@@ -37,20 +34,20 @@ contract BrightWaves is ERC721, Ownable {
      * @dev Contract constructor.
      * @notice Constructor inherits ERC721
      */
-    constructor(string memory baseURI) public ERC721("Bright Waves", "~~~") {
+    constructor(string memory baseURI) public ERC721("Bright Waves", "~BW~") {
         _setBaseURI(baseURI);
     }
 
     // create a new collection
-    function newCollection(string calldata title, string calldata description)
+    function newCollection(string calldata title)
         external
         onlyOwner()
         returns (uint256)
     {
         _collectionCount.increment();
         uint256 id = _collectionCount.current();
-        collections[id] = Collection(title, description, 0);
-        emit NewCollection(id, title, description);
+        collections[id] = Collection(title, 0);
+        emit NewCollection(id, title);
         return id;
     }
 
@@ -58,8 +55,6 @@ contract BrightWaves is ERC721, Ownable {
     function mintArtwork(
         string calldata uri,
         string calldata hash,
-        string calldata title,
-        string calldata description,
         uint256 collection
     ) external onlyOwner() returns (uint256) {
         // check the collection exists
@@ -68,10 +63,10 @@ contract BrightWaves is ERC721, Ownable {
             "Nonexistant Collection ID"
         );
         uint256 id = _tokenIds.current();
+        artwork[id] = Artwork(hash, collection);
+        _safeMint(msg.sender, id);
         _tokenIds.increment();
         collections[collection].count++;
-        artwork[id] = Artwork(hash, title, description, collection);
-        _safeMint(msg.sender, id);
         _setTokenURI(id, uri);
         return id;
     }
@@ -80,28 +75,19 @@ contract BrightWaves is ERC721, Ownable {
     function getArtwork(uint256 id)
         external
         view
-        returns (
-            string memory,
-            string memory,
-            string memory,
-            uint256 collection
-        )
+        returns (string memory, uint256)
     {
         Artwork memory a = artwork[id];
-        return (a.hash, a.title, a.description, a.collection);
+        return (a.hash, a.collection);
     }
 
     // get collection
     function getCollection(uint256 id)
         external
         view
-        returns (
-            string memory,
-            string memory,
-            uint256
-        )
+        returns (string memory, uint256)
     {
         Collection memory c = collections[id];
-        return (c.title, c.description, c.count);
+        return (c.title, c.count);
     }
 }
