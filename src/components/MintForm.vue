@@ -140,7 +140,7 @@ export default {
         name: this.title,
         description: this.description,
         external_url: this.externalURL,
-        image: this.artHash,
+        image: "ipfs://" + this.artHash,
         background_color: this.bkgColor,
         attributes: [
           {
@@ -161,7 +161,12 @@ export default {
       console.log("Writing metadata to IPFS");
       this.metadataResp = await this.$http.post(
         `https://api.pinata.cloud/pinning/pinJSONToIPFS`,
-        this.metadata,
+        {
+          pinataMetadata: {
+            name: "BrightWaves Token Metadata - " + this.title,
+          },
+          pinataContent: this.metadata,
+        },
         {
           maxContentLength: "Infinity", //this is needed to prevent axios from erroring out with large files
           headers: {
@@ -182,7 +187,7 @@ export default {
           to: address,
           data: this.$store.state.contract.methods
             .mintArtwork(
-              this.metadataResp.data.IpfsHash,
+              "ipfs://" + this.metadataResp.data.IpfsHash,
               this.artHash,
               this.title,
               this.description,
