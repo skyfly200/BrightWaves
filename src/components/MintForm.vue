@@ -1,13 +1,13 @@
 <template lang="pug">
 v-stepper(v-model='step')
   v-stepper-header
-    v-stepper-step(:complete='step > 1' step='1') Add Art
+    v-stepper-step(:complete='step > 1' step='1' color="success") Add Art
     v-divider
-    v-stepper-step(:complete='step > 2' step='2') Upload Metadata
+    v-stepper-step(:complete='step > 2' step='2' color="success") Upload Metadata
     v-divider
-    v-stepper-step(step='3') Mint Token
+    v-stepper-step(:complete='step > 3' step='3' color="success") Mint Token
     v-divider
-    v-stepper-step(step='4') Done
+    v-stepper-step(:complete='step > 3' step='4' color="success") Done
   v-stepper-items
     v-stepper-content(step='1')
       v-card.mb-12(elevation="0")
@@ -36,10 +36,12 @@ v-stepper(v-model='step')
           v-btn(color='primary' @click='uploadMetadata') Upload To IPFS
     v-stepper-content(step='3')
       v-card.mb-12(elevation="0")
-        v-card-title Mint Preview
+        v-card-title Preview Token Data
         v-card-text
-          h4 Token Art
-          v-img(:src="'https://gateway.pinata.cloud/ipfs/' + artHash")
+          h4 {{ title }}
+          h6 {{ collection }}
+          p {{ description }}
+          v-img(max-height="90vh" max-width="100%" contain :src="'https://gateway.pinata.cloud/ipfs/' + artHash")
           h4 Token Metadata
           p {{ metadata }}
         v-card-actions
@@ -50,10 +52,13 @@ v-stepper(v-model='step')
       v-card.mb-12(elevation="0")
         v-card-title Token Minted
         v-card-text
-          h4 TokenId: {{ tokenId }}
-          h4 View Token on OpenSea
-          h4 View TX on etherscan
+          h2 TX Hash: {{ txHash }}
+          h4 Token ID: {{ tokenId }}
+          h4 Collection: {{ collection }}
+          h4 Collection Index: 0
         v-card-actions
+          v-btn(color="secondary") Token on OpenSea
+          v-btn(color="secondary") TX on Etherscan
           v-spacer
           v-btn(color='primary' @click='step = 1') Mint Another
 </template>
@@ -74,7 +79,9 @@ export default {
     collections: ["Kallidascopic", "Droplets"],
     artResp: null,
     artHash: null,
+    metadata: null,
     metadataResp: null,
+    txHash: null,
     tokenId: null,
   }),
   mounted: async function() {
@@ -114,7 +121,7 @@ export default {
     },
     uploadMetadata: async function() {
       // build the metadata object from the token data and IPFS hashes
-      let metadata = {
+      this.metadata = {
         name: this.title,
         description: this.description,
         external_url: this.externalURL,
@@ -134,12 +141,12 @@ export default {
       };
       // log metadata to console
       console.log("Metadata of token:");
-      console.log(metadata);
+      console.log(this.metadata);
       // upload metadata JSON object to IPFS
       console.log("Writing metadata to IPFS");
       this.metadataResp = await this.$http.post(
         `https://api.pinata.cloud/pinning/pinJSONToIPFS`,
-        metadata,
+        this.metadata,
         {
           maxContentLength: "Infinity", //this is needed to prevent axios from erroring out with large files
           headers: {
