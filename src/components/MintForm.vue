@@ -86,10 +86,9 @@ export default {
   }),
   computed: {
     collectionId() {
-      let id = -1;
-      for (let i = 1; i <= this.collections.length; i++)
-        if (this.collections[i][0] === this.collection) id = i;
-      return id;
+      for (let i = 0; i < this.collections.length; i++)
+        if (this.collections[i][0] === this.collection) return i + 1;
+      return -1;
     },
     ...mapGetters(["currentAccount"]),
   },
