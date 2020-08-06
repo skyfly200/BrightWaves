@@ -75,7 +75,7 @@ export default {
     description: "",
     collection: null,
     bkgColor: "FFFFFF",
-    externalURL: "https://skylerfly.com/",
+    externalURL: "https://www.instagram.com/bright.waves/",
     collections: ["Kallidascopic", "Droplets"],
     artResp: null,
     artHash: null,
