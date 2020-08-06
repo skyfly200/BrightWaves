@@ -19,6 +19,7 @@
     "streamifier": "^0.1.1",
     "vue": "^2.6.11",
     "vuetify": "^2.2.11",
+    "vuex": "^3.5.1",
     "web3": "^1.2.11"
   },
   "devDependencies": {
