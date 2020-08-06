@@ -52,6 +52,9 @@ export default {
     step: 1,
     collections: ["Kallidascopic", "Droplets"],
   }),
+  mounted: async function() {
+    await this.$store.dispatch("initialize");
+  },
   methods: {
     uploadArt() {
       // load Pinata SDK

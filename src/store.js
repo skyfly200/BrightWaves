@@ -31,7 +31,7 @@ const store = new Vuex.Store({
     async initialize(context) {
       await context.dispatch('loadWeb3')
       await context.dispatch('loadAccount')
-      await context.dispatch('registerContracts')
+      await context.dispatch('registerContract')
     },
     loadWeb3(context) {
       return new Promise((resolve) => {
@@ -73,7 +73,7 @@ const store = new Vuex.Store({
         } else reject()
       })
     },
-    registerContracts(context) {
+    registerContract(context) {
       return new Promise((resolve, reject) => {
         const web3 = context.state.web3
         if (web3 !== null) {
