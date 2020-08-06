@@ -57,8 +57,8 @@ v-stepper(v-model='step')
           h4 Collection: {{ collection }}
           h4 Collection Index: 0
         v-card-actions
-          v-btn(color="secondary") Token on OpenSea
-          v-btn(color="secondary") TX on Etherscan
+          v-btn(color="secondary" target="_blank" :href="'https://ropsten.etherscan.io/tx/' + txHash") TX on Etherscan
+          v-btn(color="secondary" target="_blank" :href="'https://ropsten.https://opensea.io/assets/0xffffffffffff/' + tokenId") Token on OpenSea
           v-spacer
           v-btn(color='primary' @click='step = 1') Mint Another
 </template>
