@@ -13,14 +13,14 @@ v-stepper(v-model='step')
       v-card.mb-12(elevation="0")
         v-card-title Add Your Art
         v-card-text
-          p Upload a new file or enter an IPFS Hash
-          v-file-input(label="Art File" type="file")#art-file
-          h2 Or
-          v-text-field(label="IPFS Hash")
+          v-file-input(v-if="newUpload" label="Art File" type="file")#art-file
+          v-text-field(v-else label="IPFS Hash" v-model="artHash")
+          h4 {{ newUpload ? "Already have an IPFS Hash?" : "Need to upload a file to IPFS?"}}
+          v-btn(color="secondary" @click="newUpload = !newUpload") {{ newUpload ? "Enter an IPFS Hash" : "Upload A File" }}
         v-card-actions
           v-btn(@click="") Reset
           v-spacer
-          v-btn(color='primary' @click='uploadArt') Upload To IPFS
+          v-btn(color='primary' @click='uploadArt') {{ newUpload ? "Upload To IPFS" : "Next"}}
     v-stepper-content(step='2')
       v-card.mb-12.metadata-fields(elevation="0")
         v-card-title Enter Metadata
@@ -36,11 +36,12 @@ v-stepper(v-model='step')
           v-btn(color='primary' @click='uploadMetadata') Upload To IPFS
     v-stepper-content(step='3')
       v-card.mb-12(elevation="0")
-        v-card-title Mint a Token
+        v-card-title Mint Preview
         v-card-text
-          h4 Gas Fees: 0.-----
-          h4 Token Preview
-          h4 Metadata Preview
+          h4 Token Art
+          v-img(:src="'https://gateway.pinata.cloud/ipfs/' + artHash")
+          h4 Token Metadata
+          p {{ metadata }}
         v-card-actions
           v-btn(@click="step = 2") Back
           v-spacer
@@ -64,6 +65,7 @@ export default {
   name: "MintForm",
   data: () => ({
     step: 1,
+    newUpload: true,
     title: "",
     description: "",
     collection: null,
@@ -71,6 +73,7 @@ export default {
     externalURL: "https://skylerfly.com/",
     collections: ["Kallidascopic", "Droplets"],
     artResp: null,
+    artHash: null,
     metadataResp: null,
     tokenId: null,
   }),
@@ -83,25 +86,30 @@ export default {
       this.collections.push("Test");
     },
     uploadArt: async function() {
-      // upload art to IPFS
-      console.log("Uploading art to IPFS...");
-      const selectedFile = document.getElementById("art-file").files[0];
-      // build form data with any valid readStream source
-      let formData = new FormData();
-      formData.append("file", selectedFile);
-      this.artResp = await this.$http.post(
-        `https://api.pinata.cloud/pinning/pinFileToIPFS`,
-        formData,
-        {
-          maxContentLength: "Infinity", //this is needed to prevent axios from erroring out with large files
-          headers: {
-            "Content-Type": `multipart/form-data; boundary=${formData._boundary}`,
-            pinata_api_key: PINATA_API_KEY,
-            pinata_secret_api_key: PINATA_API_SECRET,
-          },
-        }
-      );
-      console.log(this.artResp.data);
+      if (this.newUpload) {
+        // upload art to IPFS
+        console.log("Uploading art to IPFS...");
+        const selectedFile = document.getElementById("art-file").files[0];
+        // build form data with any valid readStream source
+        let formData = new FormData();
+        formData.append("file", selectedFile);
+        this.artResp = await this.$http.post(
+          `https://api.pinata.cloud/pinning/pinFileToIPFS`,
+          formData,
+          {
+            maxContentLength: "Infinity", //this is needed to prevent axios from erroring out with large files
+            headers: {
+              "Content-Type": `multipart/form-data; boundary=${formData._boundary}`,
+              pinata_api_key: PINATA_API_KEY,
+              pinata_secret_api_key: PINATA_API_SECRET,
+            },
+          }
+        );
+        this.artHash = this.artResp.data.IpfsHash;
+        console.log(this.artResp.data);
+      } else {
+        console.log(this.artHash);
+      }
       this.step = 2;
     },
     uploadMetadata: async function() {
@@ -110,7 +118,7 @@ export default {
         name: this.title,
         description: this.description,
         external_url: this.externalURL,
-        image: this.artResp.data.IpfsHash,
+        image: this.artHash,
         background_color: this.bkgColor,
         attributes: [
           {
