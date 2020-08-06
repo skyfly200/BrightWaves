@@ -16,7 +16,7 @@ v-stepper(v-model='step')
           v-file-input(v-if="newUpload" label="Art File" type="file")#art-file
           v-text-field(v-else label="IPFS Hash" v-model="artHash")
           h4 {{ newUpload ? "Already have an IPFS Hash?" : "Need to upload a file to IPFS?"}}
-          v-btn(color="secondary" @click="newUpload = !newUpload") {{ newUpload ? "Enter an IPFS Hash" : "Upload A File" }}
+          v-btn(text @click="newUpload = !newUpload") {{ newUpload ? "Enter an IPFS Hash" : "Upload A File" }}
         v-card-actions
           v-btn(@click="") Reset
           v-spacer
@@ -25,7 +25,7 @@ v-stepper(v-model='step')
       v-card.mb-12.metadata-fields(elevation="0")
         v-card-title Enter Metadata
         v-card-text
-          v-autocomplete(:items="collections" label="Collection" v-model="collection")
+          v-autocomplete(:items="collections" item-text="0" label="Collection" v-model="collection" append-icon="mdi-plus" @click:append-item="")
           v-text-field(label="Title" v-model="title")
           v-text-field(label="Description" v-model="description")
           v-text-field(label="Background Color" v-model="bkgColor")
@@ -53,18 +53,18 @@ v-stepper(v-model='step')
         v-card-title Token Minted
         v-card-text
           h2 TX Hash: {{ txHash }}
-          h4 Token ID: {{ tokenId }}
           h4 Collection: {{ collection }}
-          h4 Collection Index: 0
         v-card-actions
           v-btn(color="secondary" target="_blank" :href="'https://ropsten.etherscan.io/tx/' + txHash") TX on Etherscan
-          v-btn(color="secondary" target="_blank" :href="'https://ropsten.https://opensea.io/assets/0xffffffffffff/' + tokenId") Token on OpenSea
           v-spacer
           v-btn(color='primary' @click='step = 1') Mint Another
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 const { PINATA_API_KEY, PINATA_API_SECRET } = require("../../secrets.json");
+const { address } = require("../../address.json");
 
 export default {
   name: "MintForm",
@@ -76,7 +76,7 @@ export default {
     collection: null,
     bkgColor: "FFFFFF",
     externalURL: "https://www.instagram.com/bright.waves/",
-    collections: ["Kallidascopic", "Droplets"],
+    collections: [],
     artResp: null,
     artHash: null,
     metadata: null,
@@ -84,13 +84,29 @@ export default {
     txHash: null,
     tokenId: null,
   }),
+  computed: {
+    collectionId() {
+      let id = -1;
+      for (let i = 0; i < this.collections.length; i++)
+        if (this.collections[i][0] === this.collection) id = i;
+      return id;
+    },
+    ...mapGetters(["currentAccount"]),
+  },
   mounted: async function() {
-    //await this.$store.dispatch("initialize");
+    await this.$store.dispatch("initialize");
     this.getCollections();
   },
   methods: {
-    getCollections() {
-      this.collections.push("Test");
+    getCollections: async function() {
+      let count = await this.$store.state.contract.methods
+        ._collectionCount()
+        .call();
+      console.log(count);
+      for (let i = 0; i < count; i++)
+        this.collections.push(
+          await this.$store.state.contract.methods.getCollection(i).call()
+        );
     },
     uploadArt: async function() {
       if (this.newUpload) {
@@ -161,7 +177,28 @@ export default {
     },
     mintToken() {
       // use web3 with a browser provider to talk to deployed NFT contract and mint the token
-      this.step = 4;
+      this.$store.state.web3.eth.sendTransaction(
+        {
+          from: this.currentAccount,
+          to: address,
+          data: this.$store.state.contract.methods
+            .mintArtwork(
+              this.metadataResp.data.IpfsHash,
+              this.artHash,
+              this.title,
+              this.description,
+              parseInt(this.collectionId)
+            )
+            .encodeABI(),
+        },
+        (err, txHash) => {
+          if (err) console.error(err);
+          else {
+            this.txHash = txHash;
+            this.step = 4;
+          }
+        }
+      );
     },
   },
 };

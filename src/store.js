@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Web3 from 'web3'
 
-const { address, abi } = require('../contract-data.json')
+const { address } = require('../address.json')
+const { abi } = require('../abi.json')
 
 Vue.use(Vuex)
 
