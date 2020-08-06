@@ -8,27 +8,35 @@ v-stepper(v-model='step')
     v-stepper-step(step='3') Mint Token
   v-stepper-items
     v-stepper-content(step='1')
-      v-card.mb-12(color='grey lighten-1' height='200px')
-        h2 Select Art
-        v-file-input(label="Art File" type="file")
-      v-btn(color='primary' @click='uploadArt') Upload To IPFS
-      v-btn(@click="step = 1") Back
+      v-card.mb-12(elevation="0")
+        v-card-title Select Art
+        v-card-text
+          v-file-input(label="Art File" type="file")
+        v-card-actions
+          v-spacer
+          v-btn(color='primary' @click='uploadArt') Upload To IPFS
     v-stepper-content(step='2')
-      v-card.mb-12(color='grey lighten-1' height='200px').metadata-fields
-        h2 Enter Metadata
-        v-text-field(label="Title") 
-        v-text-field(label="Description")
-        v-autocomplete(:items="collections" label="Collection").collection-select
-      v-btn(color='primary' @click='step = 3') Upload To IPFS
-      v-btn(@click="step = 2") Back
+      v-card.mb-12.metadata-fields(elevation="0")
+        v-card-title Enter Metadata
+        v-card-text
+          v-autocomplete(:items="collections" label="Collection")
+          v-text-field(label="Title") 
+          v-text-field(label="Description")
+        v-card-actions
+          v-btn(@click="step = 1") Back
+          v-spacer
+          v-btn(color='primary' @click='step = 3') Upload To IPFS
     v-stepper-content(step='3')
-      v-card.mb-12(color='grey lighten-1' height='200px')
-        h2 Mint a Token
-        h4 Gas Fees: 0.-----
-        h4 Token Preview
-        h4 Metadata Preview
-      v-btn(color='primary' @click='step = 1') Mint
-      v-btn(@click="step = 3") Back
+      v-card.mb-12(elevation="0")
+        v-card-title Mint a Token
+        v-card-text
+          h4 Gas Fees: 0.-----
+          h4 Token Preview
+          h4 Metadata Preview
+        v-card-actions
+          v-btn(@click="step = 2") Back
+          v-spacer
+          v-btn(color='primary' @click='step = 1') Mint
 </template>
 
 <script>
@@ -108,7 +116,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="sass" scoped>
-.metadata-fields
-  height: 100%
-</style>
+<style lang="sass" scoped></style>
