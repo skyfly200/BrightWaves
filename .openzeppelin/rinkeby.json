@@ -1,0 +1,436 @@
+{
+  "contracts": {
+    "BrightWaves": {
+      "address": "0x2aeaAfcea5be4C44B964626F0765bf09a5d6558B",
+      "constructorCode": "608060405234801561001057600080fd5b50613cf0806100206000396000f3fe",
+      "bodyBytecodeHash": "0dceda936f2832e54c9e075dafa12a74b92362aed0bea2c16979d563901e80f0",
+      "localBytecodeHash": "ae87e9afcf3796fdc7e94e0cc5e2cba3968272e4217680299e5d145f8a90c568",
+      "deployedBytecodeHash": "ae87e9afcf3796fdc7e94e0cc5e2cba3968272e4217680299e5d145f8a90c568",
+      "types": {
+        "t_bool": {
+          "id": "t_bool",
+          "kind": "elementary",
+          "label": "bool"
+        },
+        "t_uint256": {
+          "id": "t_uint256",
+          "kind": "elementary",
+          "label": "uint256"
+        },
+        "t_array:50<t_uint256>": {
+          "id": "t_array:50<t_uint256>",
+          "valueType": "t_uint256",
+          "length": "50",
+          "kind": "array",
+          "label": "uint256[50]"
+        },
+        "t_mapping<t_bool>": {
+          "id": "t_mapping<t_bool>",
+          "valueType": "t_bool",
+          "label": "mapping(key => bool)",
+          "kind": "mapping"
+        },
+        "t_array:49<t_uint256>": {
+          "id": "t_array:49<t_uint256>",
+          "valueType": "t_uint256",
+          "length": "49",
+          "kind": "array",
+          "label": "uint256[49]"
+        },
+        "t_struct<EnumerableSet.UintSet>": {
+          "id": "t_struct<EnumerableSet.UintSet>",
+          "kind": "struct",
+          "label": "EnumerableSet.UintSet",
+          "members": [
+            {
+              "label": "_inner",
+              "astId": 2556,
+              "type": "t_struct<EnumerableSet.Set>",
+              "src": "6247:10:14"
+            }
+          ]
+        },
+        "t_struct<EnumerableSet.Set>": {
+          "id": "t_struct<EnumerableSet.Set>",
+          "kind": "struct",
+          "label": "EnumerableSet.Set",
+          "members": [
+            {
+              "label": "_values",
+              "astId": 2263,
+              "type": "t_array:dyn<t_bytes32>",
+              "src": "1213:17:14"
+            },
+            {
+              "label": "_indexes",
+              "astId": 2267,
+              "type": "t_mapping<t_uint256>",
+              "src": "1364:37:14"
+            }
+          ]
+        },
+        "t_bytes32": {
+          "id": "t_bytes32",
+          "kind": "elementary",
+          "label": "bytes32"
+        },
+        "t_array:dyn<t_bytes32>": {
+          "id": "t_array:dyn<t_bytes32>",
+          "valueType": "t_bytes32",
+          "length": "dyn",
+          "kind": "array",
+          "label": "bytes32[]"
+        },
+        "t_mapping<t_uint256>": {
+          "id": "t_mapping<t_uint256>",
+          "valueType": "t_uint256",
+          "label": "mapping(key => uint256)",
+          "kind": "mapping"
+        },
+        "t_mapping<t_struct<EnumerableSet.UintSet>>": {
+          "id": "t_mapping<t_struct<EnumerableSet.UintSet>>",
+          "valueType": "t_struct<EnumerableSet.UintSet>",
+          "label": "mapping(key => EnumerableSet.UintSet)",
+          "kind": "mapping"
+        },
+        "t_struct<EnumerableMap.UintToAddressMap>": {
+          "id": "t_struct<EnumerableMap.UintToAddressMap>",
+          "kind": "struct",
+          "label": "EnumerableMap.UintToAddressMap",
+          "members": [
+            {
+              "label": "_inner",
+              "astId": 2081,
+              "type": "t_struct<EnumerableMap.Map>",
+              "src": "5962:10:13"
+            }
+          ]
+        },
+        "t_struct<EnumerableMap.Map>": {
+          "id": "t_struct<EnumerableMap.Map>",
+          "kind": "struct",
+          "label": "EnumerableMap.Map",
+          "members": [
+            {
+              "label": "_entries",
+              "astId": 1813,
+              "type": "t_array:dyn<t_struct<EnumerableMap.MapEntry>>",
+              "src": "1355:19:13"
+            },
+            {
+              "label": "_indexes",
+              "astId": 1817,
+              "type": "t_mapping<t_uint256>",
+              "src": "1524:37:13"
+            }
+          ]
+        },
+        "t_struct<EnumerableMap.MapEntry>": {
+          "id": "t_struct<EnumerableMap.MapEntry>",
+          "kind": "struct",
+          "label": "EnumerableMap.MapEntry",
+          "members": [
+            {
+              "label": "_key",
+              "astId": 1807,
+              "type": "t_bytes32",
+              "src": "1243:12:13"
+            },
+            {
+              "label": "_value",
+              "astId": 1809,
+              "type": "t_bytes32",
+              "src": "1265:14:13"
+            }
+          ]
+        },
+        "t_array:dyn<t_struct<EnumerableMap.MapEntry>>": {
+          "id": "t_array:dyn<t_struct<EnumerableMap.MapEntry>>",
+          "valueType": "t_struct<EnumerableMap.MapEntry>",
+          "length": "dyn",
+          "kind": "array",
+          "label": "EnumerableMap.MapEntry[]"
+        },
+        "t_address": {
+          "id": "t_address",
+          "kind": "elementary",
+          "label": "address"
+        },
+        "t_mapping<t_address>": {
+          "id": "t_mapping<t_address>",
+          "valueType": "t_address",
+          "label": "mapping(key => address)",
+          "kind": "mapping"
+        },
+        "t_string": {
+          "id": "t_string",
+          "kind": "elementary",
+          "label": "string"
+        },
+        "t_mapping<t_string>": {
+          "id": "t_mapping<t_string>",
+          "valueType": "t_string",
+          "label": "mapping(key => string)",
+          "kind": "mapping"
+        },
+        "t_array:41<t_uint256>": {
+          "id": "t_array:41<t_uint256>",
+          "valueType": "t_uint256",
+          "length": "41",
+          "kind": "array",
+          "label": "uint256[41]"
+        },
+        "t_struct<Counters.Counter>": {
+          "id": "t_struct<Counters.Counter>",
+          "kind": "struct",
+          "label": "Counters.Counter",
+          "members": [
+            {
+              "label": "_value",
+              "astId": 1761,
+              "type": "t_uint256",
+              "src": "1024:14:12"
+            }
+          ]
+        },
+        "t_struct<BrightWaves.Artwork>": {
+          "id": "t_struct<BrightWaves.Artwork>",
+          "kind": "struct",
+          "label": "BrightWaves.Artwork",
+          "members": [
+            {
+              "label": "hash",
+              "astId": 2768,
+              "type": "t_string",
+              "src": "744:11:16"
+            },
+            {
+              "label": "collection",
+              "astId": 2770,
+              "type": "t_uint256",
+              "src": "766:18:16"
+            }
+          ]
+        },
+        "t_mapping<t_struct<BrightWaves.Artwork>>": {
+          "id": "t_mapping<t_struct<BrightWaves.Artwork>>",
+          "valueType": "t_struct<BrightWaves.Artwork>",
+          "label": "mapping(key => BrightWaves.Artwork)",
+          "kind": "mapping"
+        },
+        "t_struct<BrightWaves.Collection>": {
+          "id": "t_struct<BrightWaves.Collection>",
+          "kind": "struct",
+          "label": "BrightWaves.Collection",
+          "members": [
+            {
+              "label": "title",
+              "astId": 2763,
+              "type": "t_string",
+              "src": "666:12:16"
+            },
+            {
+              "label": "count",
+              "astId": 2765,
+              "type": "t_uint256",
+              "src": "689:13:16"
+            }
+          ]
+        },
+        "t_mapping<t_struct<BrightWaves.Collection>>": {
+          "id": "t_mapping<t_struct<BrightWaves.Collection>>",
+          "valueType": "t_struct<BrightWaves.Collection>",
+          "label": "mapping(key => BrightWaves.Collection)",
+          "kind": "mapping"
+        }
+      },
+      "storage": [
+        {
+          "contract": "Initializable",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/Initializable.sol",
+          "label": "initialized",
+          "astId": 50,
+          "type": "t_bool",
+          "src": "757:24:1"
+        },
+        {
+          "contract": "Initializable",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/Initializable.sol",
+          "label": "initializing",
+          "astId": 53,
+          "type": "t_bool",
+          "src": "876:25:1"
+        },
+        {
+          "contract": "Initializable",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/Initializable.sol",
+          "label": "______gap",
+          "astId": 118,
+          "type": "t_array:50<t_uint256>",
+          "src": "1982:29:1"
+        },
+        {
+          "contract": "ContextUpgradeSafe",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/GSN/Context.sol",
+          "label": "__gap",
+          "astId": 43,
+          "type": "t_array:50<t_uint256>",
+          "src": "1277:25:0"
+        },
+        {
+          "contract": "ERC165UpgradeSafe",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/introspection/ERC165.sol",
+          "label": "_supportedInterfaces",
+          "astId": 266,
+          "type": "t_mapping<t_bool>",
+          "src": "546:52:3"
+        },
+        {
+          "contract": "ERC165UpgradeSafe",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/introspection/ERC165.sol",
+          "label": "__gap",
+          "astId": 323,
+          "type": "t_array:49<t_uint256>",
+          "src": "1841:25:3"
+        },
+        {
+          "contract": "ERC721UpgradeSafe",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721.sol",
+          "label": "_holderTokens",
+          "astId": 581,
+          "type": "t_mapping<t_struct<EnumerableSet.UintSet>>",
+          "src": "1211:64:6"
+        },
+        {
+          "contract": "ERC721UpgradeSafe",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721.sol",
+          "label": "_tokenOwners",
+          "astId": 583,
+          "type": "t_struct<EnumerableMap.UintToAddressMap>",
+          "src": "1339:51:6"
+        },
+        {
+          "contract": "ERC721UpgradeSafe",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721.sol",
+          "label": "_tokenApprovals",
+          "astId": 587,
+          "type": "t_mapping<t_address>",
+          "src": "1446:52:6"
+        },
+        {
+          "contract": "ERC721UpgradeSafe",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721.sol",
+          "label": "_operatorApprovals",
+          "astId": 593,
+          "type": "t_mapping<t_bool>",
+          "src": "1553:73:6"
+        },
+        {
+          "contract": "ERC721UpgradeSafe",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721.sol",
+          "label": "_name",
+          "astId": 595,
+          "type": "t_string",
+          "src": "1651:20:6"
+        },
+        {
+          "contract": "ERC721UpgradeSafe",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721.sol",
+          "label": "_symbol",
+          "astId": 597,
+          "type": "t_string",
+          "src": "1698:22:6"
+        },
+        {
+          "contract": "ERC721UpgradeSafe",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721.sol",
+          "label": "_tokenURIs",
+          "astId": 601,
+          "type": "t_mapping<t_string>",
+          "src": "1766:45:6"
+        },
+        {
+          "contract": "ERC721UpgradeSafe",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721.sol",
+          "label": "_baseURI",
+          "astId": 603,
+          "type": "t_string",
+          "src": "1834:23:6"
+        },
+        {
+          "contract": "ERC721UpgradeSafe",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721.sol",
+          "label": "__gap",
+          "astId": 1509,
+          "type": "t_array:41<t_uint256>",
+          "src": "22505:25:6"
+        },
+        {
+          "contract": "OwnableUpgradeSafe",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/access/Ownable.sol",
+          "label": "_owner",
+          "astId": 130,
+          "type": "t_address",
+          "src": "651:22:2"
+        },
+        {
+          "contract": "OwnableUpgradeSafe",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/access/Ownable.sol",
+          "label": "__gap",
+          "astId": 248,
+          "type": "t_array:49<t_uint256>",
+          "src": "2434:25:2"
+        },
+        {
+          "contract": "BrightWaves",
+          "path": "contracts/BrightWaves.sol",
+          "label": "_tokenIds",
+          "astId": 2753,
+          "type": "t_struct<Counters.Counter>",
+          "src": "493:34:16"
+        },
+        {
+          "contract": "BrightWaves",
+          "path": "contracts/BrightWaves.sol",
+          "label": "_collectionCount",
+          "astId": 2755,
+          "type": "t_struct<Counters.Counter>",
+          "src": "534:40:16"
+        },
+        {
+          "contract": "BrightWaves",
+          "path": "contracts/BrightWaves.sol",
+          "label": "artwork",
+          "astId": 2775,
+          "type": "t_mapping<t_struct<BrightWaves.Artwork>>",
+          "src": "841:44:16"
+        },
+        {
+          "contract": "BrightWaves",
+          "path": "contracts/BrightWaves.sol",
+          "label": "collections",
+          "astId": 2779,
+          "type": "t_mapping<t_struct<BrightWaves.Collection>>",
+          "src": "892:51:16"
+        }
+      ],
+      "warnings": {
+        "hasConstructor": false,
+        "hasSelfDestruct": false,
+        "hasDelegateCall": false,
+        "hasInitialValuesInDeclarations": false,
+        "uninitializedBaseContracts": []
+      }
+    }
+  },
+  "solidityLibs": {},
+  "proxies": {},
+  "manifestVersion": "2.2",
+  "version": "1.0.0",
+  "dependencies": {
+    "@openzeppelin/contracts-ethereum-package": {
+      "package": "0xa44bb80b290dE8a465d17B14269dF53CF0B9Bf4f",
+      "version": "3.0.0"
+    }
+  }
+}

@@ -1,6 +1,8 @@
 {
   "manifestVersion": "2.2",
-  "contracts": {},
+  "contracts": {
+    "BrightWaves": "BrightWaves"
+  },
   "dependencies": {
     "@openzeppelin/contracts-ethereum-package": "^3.0.0"
   },
