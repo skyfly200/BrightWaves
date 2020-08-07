@@ -1,14 +1,12 @@
 //SPDX-License-Identifier: Unlicensed
 pragma solidity ^0.6.8;
 
-// needed for upgradability
 //import "@openzeppelin/upgrades/contracts/Initializable.sol";
+import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts-ethereum-package/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts-ethereum-package/contracts/utils/Counters.sol";
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/access/AccessControl.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
-
-contract BrightWaves is ERC721, Ownable {
+contract BrightWaves is ERC721UpgradeSafe, OwnableUpgradeSafe {
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIds;
@@ -34,8 +32,19 @@ contract BrightWaves is ERC721, Ownable {
      * @dev Contract constructor.
      * @notice Constructor inherits ERC721
      */
-    constructor(string memory baseURI) public ERC721("Bright Waves", "~BW~") {
-        _setBaseURI(baseURI);
+    // constructor(string memory baseURI) public ERC721("Bright Waves", "~BW~") {
+    //     _setBaseURI(baseURI);
+    // }
+
+    /**
+     * @dev Contract initializer.
+     * @notice Constructor inherits ERC721 and Initializable
+     */
+    function initialize(string memory baseURI) public initializer {
+        __ERC721_init_unchained("Bright Waves", "~BW~");
+        // ERC721UpgradeSafe.initialize("Bright Waves", "~BW~");
+        // OwnableUpgradeSafe.initialize();
+        //_setBaseURI(baseURI);
     }
 
     // create a new collection

@@ -1,0 +1,180 @@
+{
+  "fileName": "IERC165.sol",
+  "contractName": "IERC165",
+  "source": "pragma solidity ^0.6.0;\n\n/**\n * @dev Interface of the ERC165 standard, as defined in the\n * https://eips.ethereum.org/EIPS/eip-165[EIP].\n *\n * Implementers can declare support of contract interfaces, which can then be\n * queried by others ({ERC165Checker}).\n *\n * For an implementation, see {ERC165}.\n */\ninterface IERC165 {\n    /**\n     * @dev Returns true if this contract implements the interface defined by\n     * `interfaceId`. See the corresponding\n     * https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section]\n     * to learn more about how these ids are created.\n     *\n     * This function call must use less than 30 000 gas.\n     */\n    function supportsInterface(bytes4 interfaceId) external view returns (bool);\n}\n",
+  "sourcePath": "@openzeppelin/contracts-ethereum-package/contracts/introspection/IERC165.sol",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "interfaceId",
+          "type": "bytes4"
+        }
+      ],
+      "name": "supportsInterface",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "ast": {
+    "absolutePath": "@openzeppelin/contracts-ethereum-package/contracts/introspection/IERC165.sol",
+    "exportedSymbols": {
+      "IERC165": [
+        336
+      ]
+    },
+    "id": 337,
+    "license": null,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 326,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:4"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 327,
+          "nodeType": "StructuredDocumentation",
+          "src": "25:279:4",
+          "text": " @dev Interface of the ERC165 standard, as defined in the\n https://eips.ethereum.org/EIPS/eip-165[EIP].\n Implementers can declare support of contract interfaces, which can then be\n queried by others ({ERC165Checker}).\n For an implementation, see {ERC165}."
+        },
+        "fullyImplemented": false,
+        "id": 336,
+        "linearizedBaseContracts": [
+          336
+        ],
+        "name": "IERC165",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": {
+              "id": 328,
+              "nodeType": "StructuredDocumentation",
+              "src": "329:340:4",
+              "text": " @dev Returns true if this contract implements the interface defined by\n `interfaceId`. See the corresponding\n https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section]\n to learn more about how these ids are created.\n This function call must use less than 30 000 gas."
+            },
+            "functionSelector": "01ffc9a7",
+            "id": 335,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "supportsInterface",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 331,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 330,
+                  "mutability": "mutable",
+                  "name": "interfaceId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 335,
+                  "src": "701:18:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes4",
+                    "typeString": "bytes4"
+                  },
+                  "typeName": {
+                    "id": 329,
+                    "name": "bytes4",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "701:6:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes4",
+                      "typeString": "bytes4"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "700:20:4"
+            },
+            "returnParameters": {
+              "id": 334,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 333,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 335,
+                  "src": "744:4:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 332,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "744:4:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "743:6:4"
+            },
+            "scope": 336,
+            "src": "674:76:4",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 337,
+        "src": "305:447:4"
+      }
+    ],
+    "src": "0:753:4"
+  },
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.12+commit.27d51765.Emscripten.clang",
+    "optimizer": {
+      "enabled": false,
+      "runs": 200
+    },
+    "evmVersion": "petersburg"
+  }
+}

@@ -11,6 +11,7 @@
   "dependencies": {
     "@openzeppelin/cli": "^2.8.2",
     "@openzeppelin/contracts": "^3.1.0",
+    "@openzeppelin/contracts-ethereum-package": "^3.0.0",
     "@pinata/sdk": "^1.1.10",
     "axios": "^0.19.2",
     "core-js": "^3.6.5",
@@ -23,6 +24,7 @@
     "web3": "^1.2.11"
   },
   "devDependencies": {
+    "@truffle/hdwallet-provider": "^1.0.40",
     "@vue/cli-plugin-babel": "~4.4.0",
     "@vue/cli-plugin-eslint": "~4.4.0",
     "@vue/cli-service": "~4.4.0",
