@@ -424,7 +424,17 @@
     }
   },
   "solidityLibs": {},
-  "proxies": {},
+  "proxies": {
+    "brightwaves/BrightWaves": [
+      {
+        "address": "0x03D37AD26961D79E52c3dAEa840C0095Fb4729a7",
+        "version": "1.0.0",
+        "implementation": "0x2aeaAfcea5be4C44B964626F0765bf09a5d6558B",
+        "admin": "0xdB0f913EfF26945D663772A8735bD22Be6f820D4",
+        "kind": "Upgradeable"
+      }
+    ]
+  },
   "manifestVersion": "2.2",
   "version": "1.0.0",
   "dependencies": {
@@ -432,5 +442,8 @@
       "package": "0xa44bb80b290dE8a465d17B14269dF53CF0B9Bf4f",
       "version": "3.0.0"
     }
+  },
+  "proxyAdmin": {
+    "address": "0xdB0f913EfF26945D663772A8735bD22Be6f820D4"
   }
 }
